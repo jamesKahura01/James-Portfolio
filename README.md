@@ -1,6 +1,6 @@
-# IT Graduate Portfolio Website
+# IT Profession Portfolio Website
 
-A simple responsive portfolio website built for an IT graduate.
+A simple responsive portfolio website built for an IT Professional.
 
 ## Files
 
