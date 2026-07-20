@@ -345,9 +345,18 @@ svg {
   gap: 1.5rem;
 }
 
-.projects-slider-wrapper {
+.projects-grid {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.project-card {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .top-slide:hover {
@@ -377,26 +386,6 @@ svg {
   box-shadow: 0 12px 30px rgba(250, 204, 21, 0.25);
 }
 
-.projects-slider {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-
-.projects-slider-track {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 1.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.projects-slider-track .project-card {
-  min-width: clamp(280px, 35vw, 360px);
-  scroll-snap-align: start;
-}
-
-.projects-slider {
-  scroll-snap-type: x mandatory;
-}
 
 .project-card {
   border-radius: 24px;
@@ -457,20 +446,88 @@ svg {
   .hero-card {
     order: -1;
   }
+
+  .top-slider-header,
+  .section-header-actions {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .top-slider-controls,
+  .section-header-actions {
+    width: 100%;
+  }
 }
 
 @media (max-width: 720px) {
   .header-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
-  .nav-links {
+  .brand-block {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   .menu-toggle {
     display: block;
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .nav-links {
+    display: none;
+    width: min(100%, 360px);
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links a {
+    width: 100%;
+    display: block;
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero-section,
+  .section-light,
+  .section-dark,
+  .section-highlight {
+    padding: 3rem 0;
+  }
+
+  .hero-card,
+  .top-slide,
+  .project-card,
+  .info-card,
+  .skill-card,
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  .top-slide {
+    padding: 1.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,29 +1,24 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
+const navLinkAnchors = document.querySelectorAll('.nav-links a');
 
 if (menuToggle && navLinks) {
+  menuToggle.setAttribute('aria-expanded', 'false');
   menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('nav-open');
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  navLinkAnchors.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('nav-open')) {
+        navLinks.classList.remove('nav-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   });
 }
 
-const slider = document.querySelector('.projects-slider');
-const prevBtn = document.querySelector('.slider-prev');
-const nextBtn = document.querySelector('.slider-next');
-
-if (slider && prevBtn && nextBtn) {
-  const step = () => slider.clientWidth * 0.8;
-
-  prevBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: -step(), behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: step(), behavior: 'smooth' });
-  });
-}
-
-const topSlider = document.querySelector('.top-slider');
 const topSliderTrack = document.querySelector('.top-slider-track');
 const topPrev = document.querySelector('.top-prev');
 const topNext = document.querySelector('.top-next');
